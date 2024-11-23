@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Matematika Wan</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="https://i.pinimg.com/originals/5a/89/68/5a8968f81ff3b1738c2a6389cdfb3935.jpg">
+</head>
+
+<body>
+
+    <header>
+    <h2 class="logo mt-3">Perhitungan Sin</h2>
+    <nav class="navigation">
+        <div class="menu-icon" id="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="sin.html">Sin</a>
+            <a href="cos.html">Cos</a>
+            <a href="tan.html">Tan</a>
+            <button class="btnLogin-popup" onclick="window.location.href = './about.html'">About</button>
+        </div>
+    </nav>
+</header>
+
+
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
+
+        <div class="form-box login">
+            <h2>Sin</h2>
+            <form action="javascript:void(0);">
+                <div class="input-box">
+                    <input type="number" required id="sin" name="sin">
+                    <label>Masukkan Sudut</label>
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><icon-icon name="lock-closed"></icon-icon></span>
+                    <input type="text" required id="result" placeholder="Hasil" readonly>
+                </div>
+
+                <button type="button" class="btn" onclick="calculateSin()">Hitung</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets2/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> 
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        function calculateSin() {
+            const angle = parseInt(document.getElementById("sin").value);
+            let result;
+
+            if (angle === null || isNaN(angle)) {
+                result = "Harap masukkan nilai yang valid";
+            } else {
+                // Daftar nilai sin untuk sudut istimewa
+                const sinValues = {
+                    0: "0",
+                    30: "1/2",
+                    45: "1/2 √2",
+                    60: "1/2 √3",
+                    90: "1",
+                    120: "1/2 √3",
+                    135: "1/2 √2",
+                    150: "1/2",
+                    180: "0",
+                    210: "-1/2",
+                    225: "-1/2 √2",
+                    240: "-1/2 √3",
+                    270: "-1",
+                    300: "-1/2 √3",
+                    315: "-1/2 √2",
+                    330: "-1/2",
+                    360: "0"
+                };
+
+                // Perhitungan untuk sudut tidak istimewa
+                if (sinValues.hasOwnProperty(angle)) {
+                    result = `sin(${angle}°) = ${sinValues[angle]}`;
+                } else if (angle === 15) {
+                    result = "sin(15°) = 1/4 (√6 - √2)";
+                } else if (angle === 75) {
+                    result = "sin(75°) = 1/4 (√6 + √2)";
+                } else if (angle === 105) {
+                    result = "sin(105°) = 1/4 (√6 + √2)";
+                } else if (angle === 155) {
+                    result = "sin(135°) = 1/2 √2";
+                } else if (angle === 165) {
+                    result = "sin(165°) = 1/4 (√6 + √2)";
+                } else {
+                    result = "Sudut tidak didukung atau tidak termasuk dalam daftar.";
+                }
+
+                // Menampilkan hasil
+                document.getElementById("result").value = result;
+            }
+        }
+    </script>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+
+</html>
